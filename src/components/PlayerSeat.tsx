@@ -9,13 +9,8 @@ type Props = {
 }
 
 export default function PlayerSeat({ player, isYou, isTurn, cardBackSrc = '/cards/card_back.png' }: Props) {
-
-  var c0 = cardBackSrc;
-  var c1 = cardBackSrc;
-  if (isYou) {
-    c0 = player.hand?.[0] ? `/cards/${player.hand[0]}.png` : cardBackSrc
-    c1 = player.hand?.[1] ? `/cards/${player.hand[1]}.png` : cardBackSrc
-  }
+  const c0 = player.hand?.[0] ? `/cards/${player.hand[0]}.png` : cardBackSrc;
+  const c1 = player.hand?.[1] ? `/cards/${player.hand[1]}.png` : cardBackSrc;
   
 
   return (
