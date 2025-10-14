@@ -1,0 +1,33 @@
+.input{
+  width:100%;
+  padding:12px 14px;
+  background: rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--white);
+  border-radius:10px;
+  outline:none;
+}
+.input:focus{box-shadow:0 0 0 3px rgba(31,122,140,0.18)}
+
+.btn{
+  padding:10px 16px;
+  background:var(--accent);
+  color:var(--white);
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:0.2px;
+  transition:transform .04s ease, opacity .2s ease;
+}
+.btn:hover{opacity:.95}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.12); }
+
+.controls{ display:flex; gap:10px; align-items:center; }
+.bet-size{ display:inline-flex; align-items:center; gap:8px; padding:6px 8px; background: rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.06); }
+
+.player-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);
+}
