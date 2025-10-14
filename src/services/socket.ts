@@ -5,7 +5,7 @@ const handlers: Record<string, Set<Callback>> = {}
 
 function safeParse(s: string){ try { return JSON.parse(s) } catch { return null } }
 
-export function connect(url = 'wss://furious.george.richmnd.uk/ws') {
+export function connect(url = import.meta.env.DEV?"ws://localhost:5000/ws":"wss://furious.george.richmnd.uk/ws") {
   if (ws) return
   ws = new WebSocket(url)
   ws.addEventListener('open', ()=> emitLocal('connect'))

@@ -11,11 +11,11 @@ import { useWebSocket } from '../hooks/useWebSocket'
 export default function GameRoom() {
   const { username, gameCode, isHost } = useUser()
   const { players, pot, board, gamePhase, startGame, placeBet, fold, check, yourId, currentTurnId } = useGame()
-  const ws = useWebSocket('wss://furious.george.richmnd.uk/ws')
+  const ws = useWebSocket(import.meta.env.DEV?"ws://localhost:5000/ws":"wss://furious.george.richmnd.uk/ws")
   const navigate = useNavigate()
 
   useEffect(() => {
-    ws.connect?.('wss://furious.george.richmnd.uk/ws')
+    ws.connect?.(import.meta.env.DEV?"ws://localhost:5000/ws":"wss://furious.george.richmnd.uk/ws")
     return () => ws.disconnect?.()
   }, [])
 
