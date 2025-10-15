@@ -1,5 +1,5 @@
 // src/pages/GameRoom.tsx (only the effects changed)
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../context/UserContext'
 import { useGame } from '../context/GameContext'
@@ -13,6 +13,7 @@ export default function GameRoom() {
   const { players, pot, board, gamePhase, startGame, placeBet, fold, check, yourId, currentTurnId } = useGame()
   const ws = useWebSocket(import.meta.env.DEV?"ws://localhost:5000/ws":"wss://furious.george.richmnd.uk/ws")
   const navigate = useNavigate()
+  const [isLobby, setIsLobby] = useState(true);
 
   useEffect(() => {
     ws.connect?.(import.meta.env.DEV?"ws://localhost:5000/ws":"wss://furious.george.richmnd.uk/ws")
@@ -36,7 +37,10 @@ export default function GameRoom() {
   }, [ws, username, gameCode, isHost])
 
   const isYourTurn = currentTurnId && yourId === currentTurnId
-  const isLobby = gamePhase === 'lobby'
+  useEffect(() => {
+    setIsLobby(gamePhase === 'lobby')
+  }, [gamePhase])
+  
 
   return (
     <div className="container" style={{ width: 'min(96vw, 1700px)' }}>

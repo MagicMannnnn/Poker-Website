@@ -38,6 +38,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       if (msg.youId) setYourId(msg.youId)
     }
     function onGameStarted(){ setGamePhase('inProgress') }
+    function onGamePause(){ setGamePhase('lobby') }
     function onDeal(msg:any){
       //setPlayers(prev => prev.map(p => ({ ...p, hand: msg.hands?.[p.id] || p.hand })))
       setPot(msg.pot ?? 0)
@@ -53,6 +54,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
     socket.on('playerList', onPlayerList)
     socket.on('gameStarted', onGameStarted)
+    socket.on('pause', onGamePause) 
     socket.on('deal', onDeal)
     socket.on('yourTurn', onYourTurn)
     socket.on('update', onUpdate)
